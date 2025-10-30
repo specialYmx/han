@@ -4,7 +4,7 @@
       <!-- 标题 -->
       <div class="header">
         <h1 class="title">💰 工资计算器</h1>
-        <p class="subtitle">快速计算您的工作时长和工资</p>
+        <p class="subtitle">快速计算您的工作时长和工资(张含)</p>
       </div>
 
       <!-- 时间选择区域 -->
@@ -52,12 +52,7 @@
           <van-icon name="gold-coin-o" color="#f59e0b" />
           <span>时薪（元/小时）</span>
         </div>
-        <van-field
-          v-model="hourlyRate"
-          type="number"
-          placeholder="请输入时薪"
-          class="rate-input"
-        />
+        <van-field v-model="hourlyRate" type="number" placeholder="请输入时薪" class="rate-input" />
       </div>
 
       <!-- 计算按钮 -->
@@ -129,9 +124,9 @@ const endTime = ref(['18', '00'])
 const hourlyRate = ref('21')
 
 // 结果显示
-const showResult = ref(false)
-const workDuration = ref('')
-const totalSalary = ref('0.00')
+const showResult = ref(true) // 默认显示结果
+const workDuration = ref('9小时0分钟') // 默认工作时长
+const totalSalary = ref('189.00') // 默认工资
 
 // 显示的时间文本
 const startTimeDisplay = computed(() => {
@@ -179,7 +174,7 @@ const calculateSalary = () => {
   const endHour = parseInt(endTime.value[0])
   const endMinute = parseInt(endTime.value[1])
 
-  let totalMinutes = (endHour * 60 + endMinute) - (startHour * 60 + startMinute)
+  let totalMinutes = endHour * 60 + endMinute - (startHour * 60 + startMinute)
 
   // 处理跨天情况
   if (totalMinutes < 0) {
@@ -407,4 +402,3 @@ const calculateSalary = () => {
   }
 }
 </style>
-
